@@ -66,7 +66,7 @@ class _Cluster(object):
     def __init__(self, compute, node_allocs, scheduler):
         self._compute = compute
         # self.name = compute.name
-        self.name = '%s @ %s' % (compute.name, compute.scheduler_ip_addr)
+        #self.name = '%s @ %s' % (compute.name, compute.scheduler_ip_addr)
         self._node_allocs = _parse_node_allocs(node_allocs)
         self._node_allocs = sorted(self._node_allocs,
                                    key=lambda node_alloc: node_alloc.ip_rex, reverse=True)
@@ -79,6 +79,7 @@ class _Cluster(object):
         self.cpu_time = 0
         self.start_time = time.time()
         self.end_time = None
+        self.name = '%s %f @ %s' % (compute.name, self.start_time, compute.scheduler_ip_addr)
         self.job_sched_time = 0
         self.zombie = False
         self.exclusive = False
